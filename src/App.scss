@@ -1,0 +1,96 @@
+$primary-color: #fff7f1;
+$secondary-color: #fffcf9;
+$accent-color: #fdbb23;
+@mixin flex-parent($direction:column,$justify-content:center,$align-items:center,$flex-wrap:nowrap) {
+	display: flex;
+	flex-direction: $direction;
+	justify-content: $justify-content;
+	align-items: $align-items;
+	flex-wrap: $flex-wrap;
+}
+body {
+	background-color: $primary-color;
+	margin: 0;
+	padding: 0;
+}
+.container {
+	width: 90%;
+	margin: 0 auto;
+}
+nav {
+	background-color: $secondary-color;
+	border-bottom: 1px solid #d6c9bf;
+	display: flex;
+	padding-left: 2em;
+}
+.colors-form {
+	@include flex-parent($direction:row,$flex-wrap:wrap);
+	width: 80%;
+	margin: 4em auto;
+	@media screen and (max-width: 769px) {
+		width: 100%;
+	}
+	input[type="text"] {
+		border: none;
+		outline: none;
+		width: 50%;
+		padding: 1.5em 1em;
+		@media screen and (max-width: 769px) {
+			padding: 1em;
+			flex: 2;
+		}
+	}
+	input[type="color"] {
+		border: none;
+		background-color: transparent;
+		height: 44px;
+		padding: 0;
+		cursor: pointer;
+		@media screen and (max-width: 769px) {
+			flex-basis: 100%;
+		}
+	}
+	button {
+		border: none;
+		background-color: $accent-color;
+		padding: 1.5em 1em;
+		margin-right: 1.5em;
+		&:hover {
+			cursor: pointer;
+		}
+		@media screen and (max-width: 769px) {
+			padding: 1em;
+		}
+	}
+}
+.display-palette {
+	background-color: $secondary-color;
+	min-height: 50vh;
+	.display-palette-row {
+		display: grid;
+		grid-template-columns: repeat(8, 1fr);
+		padding: 1em;
+		@media screen and (max-width: 769px) {
+			grid-template-columns: 100%;
+		}
+		div {
+			height: calc(20vw + 10px);
+			position: relative;
+			@media screen and (max-width: 769px) {
+				grid-column: 1/8;
+				height: 13vw;
+				margin-bottom: 1em;
+			}
+			p {
+				background-color: $secondary-color;
+				margin: 0;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				left: 0;
+				text-align: center;
+				font: 1.2em;
+			}
+		}
+	}
+}
